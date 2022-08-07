@@ -17,6 +17,10 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn import preprocessing
 
+from sklearn.tree import DecisionTreeRegressor
+
+import random
+
 data = pd.read_csv("hypothyroid.csv")
 
 # clean data
@@ -106,20 +110,29 @@ full_processor = ColumnTransformer(
 
 # preprocessing
 
-print(X)
+#print(X)
 
 X_processed = full_processor.fit_transform(X)
 y_processed = SimpleImputer(strategy="most_frequent").fit_transform(
     y.values.reshape(-1, 1)
 )
 
+random_int = random.randint(0, 1000000)
+
 X_train, X_test, y_train, y_test = train_test_split(
-    X_processed, y_processed, stratify=y_processed, random_state=1121218
+    X_processed, y_processed, stratify=y_processed, random_state=random_int
 )
+
+_, X_test_copy, _, _ = train_test_split(
+    X, y, random_state=random_int
+)
+
+person_info = X_test_copy.iloc[20]
 
 
 # initialize classifier
-xgb_cl = xgb.XGBClassifier()
+#xgb_cl = xgb.XGBClassifier()
+dt_cl = DecisionTreeRegressor(min_samples_leaf=10)
 
 # for i in range(len(y_train)):
 #     if y_train[i] == "hypothyroid":
@@ -134,9 +147,29 @@ xgb_cl = xgb.XGBClassifier()
 #         y_test[i] = 0
 
 # fit
-xgb_cl.fit(X_train, y_train)
+#xgb_cl.fit(X_train, y_train)
+dt_cl.fit(X_train, y_train)
+
 
 # predict
-prediction = xgb_cl.predict(X_test)
+#prediction = xgb_cl.predict(X_test)
+prediction = dt_cl.predict(X_test)
 
-print(prediction)
+# tuning
+
+param_grid = {
+    "max_depth": [3, 4, 5, 7],
+    "learning_rate": [0.1, 0.01, 0.05],
+    "gamma": [0, 0.25, 1],
+    "reg_lambda": [0, 1, 10],
+    "scale_pos_weight": [1, 3, 5],
+    "subsample": [0.8],
+    "colsample_bytree": [0.5],
+}
+
+percents = prediction * 100
+
+person_pred = percents[20]
+
+print(person_info)
+print(person_pred)
