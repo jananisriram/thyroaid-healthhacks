@@ -11,16 +11,16 @@
   <script src="https://kit.fontawesome.com/fa62c117c7.js" crossorigin="anonymous"></script>
   
   <link rel="stylesheet" href="styles.css">
-  <title>ThyroAid</title>
+  <title>Mission & Vision</title>
   
 </head>
 
 <body class="light" id="top">
   <header class="header center">
     
-    <!-- <h3 style="background: transparent;"> -->
+    <h3 style="background: transparent;">
       <a href="index.html" style="color: var(--clr-primary)"><img src="logo.png" alt="ThyroAid logo" height="20px" width="175px" style = "position:relative; top:-5px;"></a>
-    <!-- </h3> -->
+    </h3>
     
     <nav class="nav center">
       <ul class="nav__list center">
@@ -61,7 +61,14 @@
     
       <div class="about class">
         
-        <h1 style="text-align: center;">Welcome to <span class="about__name">ThyroAid</span></h1>
+        <h2 style="text-align: center;">Mission<span class="about__name"></span></h2>
+        <p class="about__desc" style="text-align: center; position:relative; top:-15px;">Our mission is to decrease the number of missed diagnoses of hyperthyroidism through machine learning
+          </p>
+
+        <h2 style="text-align: center; padding-top: 45px;">Vision<span class="about__name"></span></h2>
+        <p class="about__desc" style="text-indent: 30px; position:relative; top:-15px;">Our tool uses EHR data-based models to output personalized risk scores for Hypothyroidism so that primary care physicians may order more lab tests to diagnose at-risk patients. All calculated risks are based on a limited list of factors; ThyroAid acts only as a precision medicine supplement in the clinic.
+          For clinicians and pharmaceutical companies, ThyroAid will bring more patients and revenue to you, while improving public health.
+          </p>
         <!-- <h2 class="about__role">blah</h2>
         <p class="about__desc">blah</p>
         
@@ -86,79 +93,7 @@
 
 
     </div>
-    <section style="padding-top: 75px;">
-    <div class="projects__grid" style="padding-left: 50px;">
-        
-      <div class="project">
-        <h3>What's the problem?</h3>
-        <p class="project__description">
-          Three million cases of Hypothyroidism are<br> diagnosed each year in the US, while 13-23<br> million cases in the US exist undiagnosed. 
-        </p>
-        <!-- <ul class="project__stack">
-          <li class="project__stack-item">Python</li>
-        </ul> -->
-        <!--
-        <a href="https://github.com" aria-label="source code" class="link link--icon">
-          <i aria-hidden="true" class="fab fa-github"></i>
-        </a>
-        -->
-        <!--
-        <a href="https://www.red.com/" aria-label="live preview" class="link link--icon">
-          <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-        </a>
-        -->
-      </div>
-      <div class="project">
-        <h3>Why ThyroAid?</h3>
-        <p class="project__description">
-          This clinician tool helps doctors identify which<br> patients to investigate further, by highlighting<br> patient-specific factors that are shown<br> by ML to correlate significantly to Hypothyroidism,<br> yet are commonly overlooked. By highlighting<br> factors based on personalized data, we hope<br> to reduce underdiagnoses while saving<br> time and effort, thus diagnosing those<br> false negatives, and improving patient lives.
 
-        </p>
-      </div>
-    </section>
-    <section style="position:relative; top:50px;padding-bottom: 100px;">
-      <h2 style="text-align: center;">How does ThyroAid work?</h2>
-      <div class="projects__grid" style="padding: top 200px;position:relative; top:18px;text-align: center;position:relative; left:40px">
-        
-        <div class="project" style="position:relative; right:20px;">
-          <h3>Input Patient Data</h3>
-          <p class="project__description">
-            Doctors can choose to input patient data either by uploading a pdf of the patient's electronic health record (EHR) or inputting the needed information manually.
-          </p>
-          <!-- <ul class="project__stack">
-            <li class="project__stack-item">Python</li>
-          </ul> -->
-          <!--
-          <a href="https://github.com" aria-label="source code" class="link link--icon">
-            <i aria-hidden="true" class="fab fa-github"></i>
-          </a>
-          -->
-          <!--
-          <a href="https://www.red.com/" aria-label="live preview" class="link link--icon">
-            <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-          </a>
-          -->
-        </div>
-        <div>
-          <h3 style="text-align:justify">-></h3>
-        </div>
-        <div class="project">
-          <h3>Calculate Diagnosis</h3>
-          <p class="project__description">
-            Using our decision tree machine learning algorithm, ThryoAid will consider all factors inputted to determine the most likely diagnosis and the percentage accuracy based on both numerical and categorical data.
-  
-          </p>
-        </div>
-        <div>
-          <h3>-></h3>
-        </div>
-        <div class="project" style="position:relative; left:20px;">
-          <h3>Physician Follow-Up or Decision</h3>
-          <p class="project_description">
-            With ThyroAid's recommended diagnosis, the physician can either choose to order additional lab tests to gather more data to make a diagnosis or he/she will be able to make a final decision on the diagnosis for the particular patient.
-          </p>
-        </div>
-    </section>
     <!-- <section id="projects" class="section projects">
       <h2 class="section__title">Projects</h2>
       <div class="projects__grid">
@@ -175,8 +110,7 @@
           <a href="https://github.com" aria-label="source code" class="link link--icon">
             <i aria-hidden="true" class="fab fa-github"></i>
           </a>
-          -->
-          <!--
+
           <a href="https://www.red.com/" aria-label="live preview" class="link link--icon">
             <i aria-hidden="true" class="fas fa-external-link-alt"></i>
           </a>
@@ -191,9 +125,9 @@
 
 
     
+<!-- 
 
-
-    <!-- <section class="section skills" id="skills">
+    <section class="section skills" id="skills">
       
       <h2 class="section__title">blah</h2>
       <ul class="skills__list">
@@ -212,11 +146,9 @@
   </main>
 
   <footer class="footer">
-    
     <h6>
       Created By Janani Sriram, Grace Wei, Anna Guo, and Maggie Garg
     </h6>
-    
   </footer>
 
 
