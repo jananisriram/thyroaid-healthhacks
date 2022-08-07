@@ -5,6 +5,7 @@
 
 # new: xgboost: https://towardsdatascience.com/beginners-guide-to-xgboost-for-classification-problems-50f75aac5390
 
+from ast import Interactive
 import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
@@ -19,14 +20,15 @@ from sklearn import preprocessing
 
 from sklearn.tree import DecisionTreeRegressor
 
+from sklearn.linear_model import LinearRegression
+
 import random
 
 data = pd.read_csv("hypothyroid.csv")
 
 # clean data
 cleaned_data = data
-drop_cols = ["on_antithyroid_medication", "on_thyroxine", "query_on_thyroxine", "query_hypothyroid", "query_hyperthyroid", "TT4", "TT4_measured", "TBG", "TBG_measured"]
-cleaned_data.drop(drop_cols, axis=1, inplace=True)
+
 
 cleaned_data = cleaned_data.query("TSH_measured == 'y'")
 cleaned_data = cleaned_data.query("T3_measured == 'y'")
@@ -38,7 +40,14 @@ cleaned_data = cleaned_data.query("thyroid_surgery != '?'")
 cleaned_data = cleaned_data.query("pregnant != '?'")
 cleaned_data = cleaned_data.query("sick != '?'")
 
+cleaner_data_lr = cleaned_data.copy()
+
+drop_cols = ["on_antithyroid_medication", "on_thyroxine", "query_on_thyroxine", "query_hypothyroid", "query_hyperthyroid", "TT4", "TT4_measured", "TBG", "TBG_measured"]
+cleaned_data.drop(drop_cols, axis=1, inplace=True)
+
 #print(cleaned_data)
+
+
 
 drop_cols_2 = ["TSH_measured", "T3_measured", "T4U_measured", "FTI_measured", "TSH", "T3", "T4U", "FTI"]
 cleaned_data.drop(drop_cols_2, axis=1, inplace=True)
@@ -49,37 +58,44 @@ cleaned_data = cleaned_data.rename(columns={"Unnamed: 0":"disease"})
 
 
 
-# create x and y
-X = cleaned_data.drop("disease", axis=1)
-y = cleaned_data.disease
+def helper(cleaned_data, datatype):
+    # create x and y
+    X = cleaned_data.drop("disease", axis=1)
+    y = cleaned_data.disease
 
-#print(type(y[2]))
+    #print(type(y[2]))
 
-for i in range(y.size):
-    if y.iloc[i] == "hypothyroid":
-        y.iloc[i] = '1'
-    else:
-        y.iloc[i] = '0'
+    for i in range(y.size):
+        if y.iloc[i] == "hypothyroid":
+            y.iloc[i] = '1'
+        else:
+            y.iloc[i] = '0'
 
-y_lbl = pd.DataFrame(y)
-y_lbl["disease"] = y_lbl["disease"].astype(int)
-y = y_lbl["disease"]
+    y_lbl = pd.DataFrame(y)
+    y_lbl["disease"] = y_lbl["disease"].astype(int)
+    y = y_lbl["disease"]
 
 
-#print(X)
+    #print(X)
 
-#print(X.iloc[:, 1])
+    #print(X.iloc[:, 1])
 
-for i in range(X.shape[1]):
-    curr = X.iloc[:, i]
-    #print(curr)
-    for j in range(curr.size):
-        if curr.iloc[j] == 't' or curr.iloc[j] == 'F':
-            curr.iloc[j] = '1'
-        elif curr.iloc[j] == 'f' or curr.iloc[j] == 'M':
-            curr.iloc[j] = '0'
+    for i in range(X.shape[1]):
+        curr = X.iloc[:, i]
+        #print(curr)
+        for j in range(curr.size):
+            if curr.iloc[j] == 't' or curr.iloc[j] == 'F':
+                curr.iloc[j] = '1'
+            elif curr.iloc[j] == 'f' or curr.iloc[j] == 'M':
+                curr.iloc[j] = '0'
 
-    X.iloc[:, i] = X.iloc[:, i].astype(int)
+        X.iloc[:, i] = X.iloc[:, i].astype(datatype)
+
+    return X, y
+
+
+
+X, y = helper(cleaned_data, int)
 
 
 categorical_pipeline = Pipeline(
@@ -171,5 +187,52 @@ percents = prediction * 100
 
 person_pred = percents[20]
 
+print("Decision Tree Regression:")
+
 print(person_info)
 print(person_pred)
+
+
+
+
+
+
+
+
+
+###############
+
+print()
+
+
+
+
+# https://www.activestate.com/resources/quick-reads/how-to-run-linear-regressions-in-python-scikit-learn/
+
+
+
+predictors = ["Unnamed: 0", "TSH", "T3", "T4U", "FTI"]
+
+#print(cleaner_data_lr)
+
+clean_data_lr = cleaner_data_lr[predictors]
+
+clean_data_lr = clean_data_lr.rename(columns={"Unnamed: 0":"disease"})
+
+X_lr, y_lr = helper(clean_data_lr, float)
+
+model_lr = LinearRegression().fit(X_lr, y_lr)
+
+r_sq_lr = model_lr.score(X_lr, y_lr)
+
+y_pred_lr = model_lr.predict(X_lr)
+
+percent_pred_lr = y_pred_lr * 100
+
+person_data_lr = X_lr.iloc[5]
+person_pred_lr = percent_pred_lr[5]
+
+print("Linear Regression:")
+
+print(person_data_lr)
+print(person_pred_lr)
