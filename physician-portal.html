@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height:240%">
 
 <head>
   <meta charset="UTF-8" />
@@ -19,7 +19,7 @@
   <header class="header center">
     
     <h3 style="background: transparent;">
-      <a href="index.html" style="color: var(--clr-primary)"><img src="logo.png" alt="ThyroAid logo" height="20px" width="175px" style = "position:relative; top:-5px;"></a>
+      <a href="index.html" style="color: var(--clr-primary)"><img src="thyroaidlogo.png" alt="ThyroAid logo" height="20px" width="175px" style = "position:relative; top:-5px;"></a>
     </h3>
     
     <nav class="nav center">
@@ -123,15 +123,63 @@
         </div> -->
       
         <div class="container">
-          <label for="uname"><b>Age</b></label>
-          <input type="text" name="uname" required>
+          <label for="age"><b>Age</b></label>
+          <input type="text" name="age" required>
       
-          <label for="psw"><b>Sex</b></label>
-          <input type="password" name="psw" required>
+          <label for="sex"><b><br>Sex</b></label>
+          <label class="form-inputs" style="padding-bottom:50px;">
+            <br><input type="checkbox" name="remember"> M
+            <input type="checkbox" name="remember"> F
+          </label>
       
-          <!-- <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-          </label> -->
+          <label for="thyroidsurg"><b><br>Thyroid surgery?</b></label>
+          <label class="form-inputs">
+            <br><input type="checkbox" name="remember"> Y
+            <input type="checkbox" name="remember"> N
+          </label>
+
+          <label for="preg"><b><br>Pregnant?</b></label>
+          <label class="form-inputs">
+            <br><input type="checkbox" name="remember"> Y
+            <input type="checkbox" name="remember"> N
+          </label>
+
+          <label for="binary"><b><br>Binary sickness?</b></label>
+          <label class="form-inputs">
+            <br><input type="checkbox" name="remember"> Y
+            <input type="checkbox" name="remember"> N
+          </label>
+
+          <label for="tumor"><b><br>Tumor?</b></label>
+          <label class="form-inputs">
+            <br><input type="checkbox" name="remember"> Y
+            <input type="checkbox" name="remember"> N
+          </label>
+
+          <label for="lithium"><b><br>Taking lithium?</b></label>
+          <!-- <input type="text" name="lithium" required> -->
+          <label class="form-inputs">
+            <br><input type="checkbox" name="remember"> Y
+            <input type="checkbox" name="remember"> N
+          </label>
+
+          <label for="thyroidsurg"><b><br>FTI (T4) Level</b></label>
+          <input type="text" name="thyroidsurg">
+
+          <label for="t3"><b><br>T3 Level</b></label>
+          <input type="text" name="t3">
+
+          <label for="t4u"><b><br>T4U Level</b></label>
+          <input type="text" name="t4u">
+
+          <label for="tsh"><b><br>TSH Level</b></label>
+          <input type="text" name="tsh">
+
+          <label for="goitor"><b><br>Goiter?</b></label>
+          <label class="form-inputs">
+            <br><input type="checkbox" name="remember"> Y
+            <input type="checkbox" name="remember"> N
+          </label>>
         </div>
       
         <!-- <div class="container" style="background-color:#f1f1f1">
