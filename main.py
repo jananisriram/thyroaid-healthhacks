@@ -30,6 +30,10 @@ data = pd.read_csv("hypothyroid.csv")
 cleaned_data = data
 
 
+res_index = 20
+
+
+
 cleaned_data = cleaned_data.query("TSH_measured == 'y'")
 cleaned_data = cleaned_data.query("T3_measured == 'y'")
 cleaned_data = cleaned_data.query("T4U_measured == 'y'")
@@ -143,7 +147,7 @@ _, X_test_copy, _, _ = train_test_split(
     X, y, random_state=random_int
 )
 
-person_info = X_test_copy.iloc[20]
+person_info = X_test_copy.iloc[res_index]
 
 
 # initialize classifier
@@ -183,9 +187,10 @@ param_grid = {
     "colsample_bytree": [0.5],
 }
 
+
 percents = prediction * 100
 
-person_pred = percents[20]
+person_pred = percents[res_index]
 
 print("Decision Tree Regression:")
 
@@ -229,10 +234,14 @@ y_pred_lr = model_lr.predict(X_lr)
 
 percent_pred_lr = y_pred_lr * 100
 
-person_data_lr = X_lr.iloc[5]
-person_pred_lr = percent_pred_lr[5]
+person_data_lr = X_lr.iloc[res_index]
+person_pred_lr = percent_pred_lr[res_index]
 
 print("Linear Regression:")
 
 print(person_data_lr)
 print(person_pred_lr)
+
+
+
+# pull
