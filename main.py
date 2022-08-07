@@ -6,6 +6,7 @@
 # new: xgboost: https://towardsdatascience.com/beginners-guide-to-xgboost-for-classification-problems-50f75aac5390
 
 from ast import Interactive
+from pipes import Template
 import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
@@ -192,10 +193,10 @@ percents = prediction * 100
 
 person_pred = percents[res_index]
 
-print("Decision Tree Regression:")
+# print("Decision Tree Regression:")
 
-print(person_info)
-print(person_pred)
+# print(person_info)
+# print(person_pred)
 
 
 
@@ -237,11 +238,10 @@ percent_pred_lr = y_pred_lr * 100
 person_data_lr = X_lr.iloc[res_index]
 person_pred_lr = percent_pred_lr[res_index]
 
-print("Linear Regression:")
+# print("Linear Regression:")
 
-print(person_data_lr)
-print(person_pred_lr)
+# print(person_data_lr)
+# print(person_pred_lr)
 
 
 
-# pull
